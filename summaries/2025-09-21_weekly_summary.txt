@@ -1,0 +1,46 @@
+週末まとめ（Week Summary）
+期間：2025/9/13 ～ 2025/9/21 テーマ：SQL基礎（WHERE / ORDER BY / AS / DISTINCT / GROUP BY / COUNT / HAVING）
+
+1. 今週学んだこと
+	•	WHERE：グループ化前の条件を指定
+	•	ORDER BY：昇順/降順で並び替え
+	•	AS：列名に別名をつけて見やすく出力
+	•	DISTINCT：重複を取り除く
+	•	GROUP BY：列ごとにデータをグループ化
+	•	COUNT(*) と COUNT(列名) の違い
+	◦	COUNT(*) → NULL も含めて全件数
+	◦	COUNT(列名) → NULL を除外して件数を数える
+	•	HAVING：グループ化した後の条件指定
+
+2. 実行例（印象に残ったSQL）
+
+-- 重複を取り除いた国の一覧
+SELECT DISTINCT Country
+FROM Customer
+ORDER BY Country;
+
+-- 国ごとの顧客数（5人以上）
+SELECT Country, COUNT(*) AS CustomerCount
+FROM Customer
+GROUP BY Country
+HAVING COUNT(*) >= 5
+ORDER BY CustomerCount DESC;
+
+-- Email が NULL を除外した件数
+SELECT COUNT(Email) AS WithEmail
+FROM Customer;
+
+3. 気づき・学び
+	•	WHERE は前処理、HAVING は後処理 という整理で理解が深まった
+	•	COUNT の挙動（NULL 含む/含まない） を Dummy テーブル実験で確認できた
+	•	実験用テーブルを作ると安全に練習できると実感した
+
+4. 今後の課題・次週の予定
+	•	Invoice テーブルを使った集計（SUM, AVG, MAX, MIN） に挑戦する
+	•	条件付き集計（WHERE + HAVING の使い分け）を強化する
+	•	実践的な「売上分析」のイメージを掴む
+
+5. 感想（自由記述）
+	•	SQLの基本構文にだんだん慣れてきた。
+	•	構文を知るだけでなく、実行して「どういう結果になるか」を確かめるのが大事。
+	•	徐々に難易度が上がってきているが、手応えも増してきた。
